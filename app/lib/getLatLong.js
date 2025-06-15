@@ -2,7 +2,6 @@
 
 import { setDefaults, fromAddress } from "react-geocode";
 
-// Set the geocoding defaults once
 setDefaults({
   key: process.env.NEXT_PUBLIC_GOOGLE_GEOCODING_SECRET,
   language: "en",
@@ -10,8 +9,10 @@ setDefaults({
 });
 
 export async function getLatLngFromAddress({ street, town, city, postcode }) {
+  // get address from form submission
   const address = `${street}, ${town}, ${city}, ${postcode}`;
 
+  // call fromAddress in Google api using address data and get lat long
   try {
     const response = await fromAddress(address);
     const { lat, lng } = response.results[0].geometry.location;

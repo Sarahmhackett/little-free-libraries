@@ -1,13 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { getLatLngFromAddress } from "../lib/geocodeService";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { getLatLngFromAddress } from "../lib/getLatLong";
+import { addLibrary } from "../actions/addLibrary";
 import styles from "./AddLibraryForm.module.css";
 
 const AddNewLibraryForm = () => {
-  // set formData object as empty strings
+  // Store Form fields in state
   const [formData, setFormData] = useState({
     name: "",
     street: "",
@@ -17,12 +16,6 @@ const AddNewLibraryForm = () => {
     image: null,
   });
 
-  // set lat lng to empoty strings
-  const [latLng, setLatLng] = useState({ lat: "", lng: "" });
-
-  const [submitResult, setSubmitResult] = useState(null);
-
-  // track what is typed
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (name === "image") {
@@ -32,30 +25,29 @@ const AddNewLibraryForm = () => {
     }
   };
 
+  // Once submitted, use formData state to fetch lat long coords and create formDataToSend.
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      // set the lat lng coords based on data passed to LongLatGeocode
       const { lat, lng } = await getLatLngFromAddress(formData);
-      setLatLng({ lat, lng });
 
-      //collate all the data to save
-      const dataToSave = {
-        ...formData,
-        lat,
-        lng,
-      };
+      const formDataToSend = new FormData();
+      formDataToSend.append("name", formData.name);
+      formDataToSend.append("street", formData.street);
+      formDataToSend.append("town", formData.town);
+      formDataToSend.append("city", formData.city);
+      formDataToSend.append("postcode", formData.postcode);
+      formDataToSend.append("lat", lat);
+      formDataToSend.append("lng", lng);
+      if (formData.image) {
+        formDataToSend.append("image", formData.image);
+      }
 
-      setSubmitResult(dataToSave);
-
-      toast.success("Thanks for adding a new library!");
-
-      // TODO: Save dataToSave to your DB/backend
-
-      console.log("Data to save:", dataToSave);
+      // call the AddLibrary action with that data
+      await addLibrary(formDataToSend);
     } catch (error) {
-      toast.error("Submission failed. Please check the address.");
+      console.error("Submission error:", error);
     }
   };
 
@@ -131,10 +123,6 @@ const AddNewLibraryForm = () => {
           className={styles.fileInput}
         />
       </label>
-
-      {/* Hidden inputs for lat/lng */}
-      <input type="hidden" name="latitude" value={latLng.lat} />
-      <input type="hidden" name="longitude" value={latLng.lng} />
 
       <button type="submit" className={styles.submitBtn}>
         Submit
