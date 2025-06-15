@@ -14,11 +14,7 @@ export default async function Home() {
     console.error("Error fetching libraries:", error);
   }
 
-  return (
-    <div className={styles.page}>
-      <AddLibraryForm />
-    </div>
-  );
+  return <div className={styles.page}>Homepage </div>;
 }
 
 return (
