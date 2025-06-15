@@ -1,7 +1,7 @@
 import styles from "./page.module.css";
-import AddLibraryForm from "./components/AddLibraryForm";
 import connectDB from "./config/database";
 import Library from "./models/libraries";
+import AddNewLibraryForm from "./components/AddLibraryForm";
 
 export default async function Home() {
   await connectDB();
@@ -19,6 +19,6 @@ export default async function Home() {
 
 return (
   <div className={styles.page}>
-    <AddLibraryForm />
+    <AddNewLibraryForm />
   </div>
 );
