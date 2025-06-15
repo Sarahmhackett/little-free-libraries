@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 import { getLatLngFromAddress } from "../lib/geocodeService";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import styles from "./AddLibraryForm.module.css";
 
 const AddNewLibraryForm = () => {
   // set formData object as empty strings
@@ -46,17 +49,19 @@ const AddNewLibraryForm = () => {
 
       setSubmitResult(dataToSave);
 
+      toast.success("Thanks for adding a new library!");
+
       // TODO: Save dataToSave to your DB/backend
 
       console.log("Data to save:", dataToSave);
     } catch (error) {
-      console.log("Failed to get coordinates for address.", error);
+      toast.error("Submission failed. Please check the address.");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="">
-      <label className="">
+    <form onSubmit={handleSubmit} className={styles.formContainer}>
+      <label className={styles.formLabel}>
         Library Name / Description:
         <input
           name="name"
@@ -64,11 +69,11 @@ const AddNewLibraryForm = () => {
           value={formData.name}
           onChange={handleChange}
           required
-          className=""
+          className={styles.formInput}
         />
       </label>
 
-      <label className="">
+      <label className={styles.formLabel}>
         Street
         <input
           name="street"
@@ -76,11 +81,11 @@ const AddNewLibraryForm = () => {
           value={formData.street}
           onChange={handleChange}
           required
-          className=""
+          className={styles.formInput}
         />
       </label>
 
-      <label className="">
+      <label className={styles.formLabel}>
         Town
         <input
           name="town"
@@ -88,11 +93,11 @@ const AddNewLibraryForm = () => {
           value={formData.town}
           onChange={handleChange}
           required
-          className=""
+          className={styles.formInput}
         />
       </label>
 
-      <label className="">
+      <label className={styles.formLabel}>
         City:
         <input
           name="city"
@@ -100,11 +105,11 @@ const AddNewLibraryForm = () => {
           value={formData.city}
           onChange={handleChange}
           required
-          className=""
+          className={styles.formInput}
         />
       </label>
 
-      <label className="">
+      <label className={styles.formLabel}>
         Postcode:
         <input
           name="postcode"
@@ -112,18 +117,18 @@ const AddNewLibraryForm = () => {
           value={formData.postcode}
           onChange={handleChange}
           required
-          className=""
+          className={styles.formInput}
         />
       </label>
 
-      <label className="">
+      <label className={styles.formLabel}>
         Upload Image:
         <input
           name="image"
           type="file"
           accept="image/*"
           onChange={handleChange}
-          className=""
+          className={styles.fileInput}
         />
       </label>
 
@@ -131,7 +136,7 @@ const AddNewLibraryForm = () => {
       <input type="hidden" name="latitude" value={latLng.lat} />
       <input type="hidden" name="longitude" value={latLng.lng} />
 
-      <button type="submit" className="">
+      <button type="submit" className={styles.submitBtn}>
         Submit
       </button>
     </form>
