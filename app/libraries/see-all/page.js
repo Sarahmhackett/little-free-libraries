@@ -14,6 +14,7 @@ const SeeAllPage = async () => {
         {allLibraries.map((lib) => (
           <LibraryCard
             key={lib._id}
+            id={lib._id.toString()}
             name={lib.name}
             street={lib.street}
             town={lib.town}

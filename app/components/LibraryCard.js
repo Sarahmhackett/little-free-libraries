@@ -1,9 +1,12 @@
 import styles from "./LibraryCard.module.css";
+import Link from "next/link";
 
-const LibraryCard = ({ name, street, town, city, postcode, image }) => {
+const LibraryCard = ({ id, name, street, town, city, postcode, image }) => {
   return (
     <div className={styles.card}>
-      <h2>{name}</h2>
+      <Link href={`/library-details/${id}`}>
+        <h2>{name}</h2>
+      </Link>
       <p>
         {street}, {town}, {city}, {postcode}
       </p>
