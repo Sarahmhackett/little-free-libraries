@@ -1,6 +1,7 @@
 import connectDB from "@/app/config/database";
 import Library from "@/app/models/libraries";
 import LibraryCard from "@/app/components/LibraryCard";
+import AllLibrariesOnMap from "@/app/components/AllLibrariesOnMap";
 import styles from "./page.module.css";
 
 const SeeAllPage = async () => {
@@ -8,8 +9,13 @@ const SeeAllPage = async () => {
 
   const allLibraries = await Library.find({}).lean();
 
+  const serialisedAllLibraries = JSON.parse(JSON.stringify(allLibraries));
+
   return (
     <section>
+      <div>
+        <AllLibrariesOnMap serialisedAllLibraries={serialisedAllLibraries} />
+      </div>
       <div className={styles.container}>
         {allLibraries.map((lib) => (
           <LibraryCard

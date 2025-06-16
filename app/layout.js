@@ -1,5 +1,4 @@
 import NavBar from "./components/NavBar";
-import { ToastContainer } from "react-toastify";
 import "./globals.css";
 
 export const metadata = {
