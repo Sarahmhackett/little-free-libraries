@@ -1,9 +1,21 @@
 .container {
-
-    background-color: rgb(17, 129, 139);
     color: white;
     display: grid;
     grid-template-columns: repeat(3, 1fr); 
-    gap: 1rem; 
+    gap: 0.5rem; 
     padding: 1rem;
+}
+
+.titleContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+}
+
+.title {
+    font-size: 36px;
+    text-decoration: underline wavy;
+    text-underline-offset: 6px;
+    color: rgb(26, 208, 159);
 }

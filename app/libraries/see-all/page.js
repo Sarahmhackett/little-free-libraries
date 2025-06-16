@@ -16,6 +16,9 @@ const SeeAllPage = async () => {
       <div>
         <AllLibrariesOnMap serialisedAllLibraries={serialisedAllLibraries} />
       </div>
+      <div className={styles.titleContainer}>
+        <h2 className={styles.title}>Browse them all</h2>
+      </div>
       <div className={styles.container}>
         {allLibraries.map((lib) => (
           <LibraryCard
