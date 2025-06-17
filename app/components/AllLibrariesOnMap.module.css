@@ -1,3 +1,52 @@
-.mapboxglpopup {
-    z-index: 999;
+
+.popUp {
+    position: absolute;
+    width: 250px;
+    height: 150px;
+    transform: translate(-50%, -130%);
+    background: rgba(5, 122, 89, 0.803);
+    padding: 20px 15px 15px 15px;
+    border-radius: 16px;
+    z-index: 1000;
+}
+
+.popUp::after {
+    content: "";
+    position: absolute;
+    bottom: -10px; 
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 10px 10px 0 10px; 
+    border-style: solid;
+    border-color: rgba(5, 122, 89, 0.803) transparent transparent transparent;
+  }
+
+.closeIcon {
+    position: absolute;
+    transform: translate(670%, -50%);
+    z-index: 1001;
+
+}
+
+.popupContent {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; 
+
+}
+
+.title {
+    color: white;
+    font-size: 22px;
+}
+
+.body {
+    color: white;
+    font-size: 14px;
+}
+
+.link {
+    color: white;
+    font-size: 14px;
+    text-decoration: underline;
 }

@@ -1,9 +1,12 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+
 import Map from "react-map-gl";
 import { Marker, Popup } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { PiBookOpenFill } from "react-icons/pi";
+import { IoCloseCircleOutline } from "react-icons/io5";
 import styles from "./AllLibrariesOnMap.module.css";
 
 const center = {
@@ -53,32 +56,45 @@ const AllLibrariesOnMap = ({ serialisedAllLibraries }) => {
               anchor="bottom"
             >
               <div
-                onClick={() => {
-                  setSelectedLibrary(library);
-                }}
+                onClick={() =>
+                  setSelectedLibrary(
+                    selectedLibrary?._id === library._id ? null : library
+                  )
+                }
                 style={{ cursor: "pointer" }}
               >
-                <PiBookOpenFill size={30} color="blue" />
+                <PiBookOpenFill size={30} color="rgb(217, 97, 135)" />
               </div>
             </Marker>
           ))}
 
           {selectedLibrary && screenPosition && (
             <div
+              className={styles.popUp}
               onClick={() => setSelectedLibrary(null)}
               style={{
-                position: "absolute",
                 left: screenPosition.x,
                 top: screenPosition.y,
-                transform: "translate(-50%, -100%)",
-                background: "white",
-                padding: "10px",
-                border: "1px solid black",
-                zIndex: 1000,
               }}
             >
-              <h3>{selectedLibrary.name}</h3>
-              <p>{selectedLibrary.street}</p>
+              <IoCloseCircleOutline
+                size={30}
+                color="white"
+                className={styles.closeIcon}
+              />
+
+              <div className={styles.popupContent}>
+                <h3 className={styles.title}>{selectedLibrary.name}</h3>
+                <p className={styles.body}>{selectedLibrary.street}</p>
+
+                <Link
+                  href={`/library-details/${selectedLibrary._id}`}
+                  className={styles.link}
+                >
+                  See Details
+                </Link>
+                {console.log("SELECTED LIBRARY: ", selectedLibrary)}
+              </div>
             </div>
           )}
         </Map>
