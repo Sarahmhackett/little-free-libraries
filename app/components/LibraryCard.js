@@ -1,6 +1,6 @@
-import styles from "./LibraryCard.module.css";
 import Link from "next/link";
 import Image from "next/image";
+import styles from "./LibraryCard.module.css";
 
 const LibraryCard = ({ id, name, street, town, city, postcode, image }) => {
   return (

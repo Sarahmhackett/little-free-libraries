@@ -1,0 +1,19 @@
+.commentsContainer {
+    gap: 10px;
+    width: 100%;
+}
+
+.comment {
+    margin-top: 10px;
+    padding: 10px;
+    border-bottom: 1px solid rgb(217, 97, 135);
+}
+
+.name {
+    font-size: 20px;
+    color: rgb(217, 97, 135);
+}
+
+.date {
+    font-size: 12px;
+}

@@ -1,0 +1,8 @@
+.markerText {
+    background-color: rgba(5, 122, 89, 0.803);
+    padding: 3px 10px;
+    transform: translate(-10%, 300%);
+    border-radius: 5px;
+    color: white;
+
+}
