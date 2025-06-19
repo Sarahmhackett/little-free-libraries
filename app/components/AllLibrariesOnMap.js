@@ -10,8 +10,8 @@ import { IoCloseCircleOutline } from "react-icons/io5";
 import styles from "./AllLibrariesOnMap.module.css";
 
 const center = {
-  longitude: -1.5303113,
-  latitude: 53.7922978,
+  longitude: -1.527374,
+  latitude: 53.835476,
 };
 
 const AllLibrariesOnMap = ({ serialisedAllLibraries }) => {
@@ -43,7 +43,7 @@ const AllLibrariesOnMap = ({ serialisedAllLibraries }) => {
           initialViewState={{
             longitude: center.longitude,
             latitude: center.latitude,
-            zoom: 10,
+            zoom: 12,
           }}
           style={{ width: "100%", height: 500 }}
           mapStyle="mapbox://styles/mapbox/streets-v12"

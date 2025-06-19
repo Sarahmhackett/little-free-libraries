@@ -62,7 +62,7 @@ const AddNewLibraryForm = () => {
       const result = await addLibrary(formDataToSend);
 
       if (!result.success) {
-        setStatusMessage(`❌ ${result.error}`);
+        setStatusMessage(`${result.error}`);
       } else {
         setStatusMessage("✅ Your library was added successfully!");
         setFormData({

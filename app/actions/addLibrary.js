@@ -1,5 +1,5 @@
 "use server";
-
+import cloudinary from "../config/cloudinary";
 import connectDB from "../config/database";
 import Library from "../models/libraries";
 import { revalidatePath } from "next/cache";
@@ -20,6 +20,24 @@ export async function addLibrary(formData) {
     };
   }
 
+  // Cloudinary image upload
+  let imageUrl = "";
+
+  const imageFile = formData.get("image");
+  if (imageFile && imageFile.name !== "") {
+    const buffer = Buffer.from(await imageFile.arrayBuffer());
+    const base64 = buffer.toString("base64");
+
+    const result = await cloudinary.uploader.upload(
+      `data:image/png;base64,${base64}`,
+      {
+        folder: "libraries",
+      }
+    );
+
+    imageUrl = result.secure_url;
+  }
+
   // Creates a new MongoDB Library record from the formData passed to it
   const newLibrary = new Library({
     name: formData.get("name"),
@@ -29,7 +47,7 @@ export async function addLibrary(formData) {
     postcode: formData.get("postcode"),
     lat: parseFloat(formData.get("lat")),
     lng: parseFloat(formData.get("lng")),
-    image: formData.get("image")?.name || "", // to do: Cloudinary
+    image: imageUrl,
   });
 
   await newLibrary.save();
