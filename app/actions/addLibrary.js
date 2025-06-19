@@ -8,6 +8,18 @@ import { redirect } from "next/navigation";
 export async function addLibrary(formData) {
   await connectDB();
 
+  const street = formData.get("street");
+
+  const existingLibrary = await Library.findOne({ street });
+
+  if (existingLibrary) {
+    return {
+      success: false,
+      error:
+        "Uh oh! A library already exists at this address, check the 'see all' map",
+    };
+  }
+
   // Creates a new MongoDB Library record from the formData passed to it
   const newLibrary = new Library({
     name: formData.get("name"),
@@ -22,5 +34,5 @@ export async function addLibrary(formData) {
 
   await newLibrary.save();
   revalidatePath("/");
-  redirect("/");
+  redirect("/libraries/see-all");
 }

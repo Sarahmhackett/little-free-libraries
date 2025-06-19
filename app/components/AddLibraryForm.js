@@ -4,6 +4,12 @@ import { useState } from "react";
 import { getLatLngFromAddress } from "../lib/getLatLong";
 import { addLibrary } from "../actions/addLibrary";
 import styles from "./AddLibraryForm.module.css";
+import { Borel } from "next/font/google";
+
+const googleFont = Borel({
+  subsets: ["latin"],
+  weight: "400",
+});
 
 const AddNewLibraryForm = () => {
   // Store Form fields in state
@@ -15,6 +21,8 @@ const AddNewLibraryForm = () => {
     postcode: "",
     image: null,
   });
+
+  const [statusMessage, setStatusMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -44,17 +52,38 @@ const AddNewLibraryForm = () => {
         formDataToSend.append("image", formData.image);
       }
 
-      // call the AddLibrary action with that data
-      await addLibrary(formDataToSend);
+      //     // call the AddLibrary action with that data
+      //     await addLibrary(formDataToSend);
+      //   } catch (error) {
+      //     console.error("Submission error:", error);
+      //   }
+      // };
+
+      const result = await addLibrary(formDataToSend);
+
+      if (!result.success) {
+        setStatusMessage(`❌ ${result.error}`);
+      } else {
+        setStatusMessage("✅ Your library was added successfully!");
+        setFormData({
+          name: "",
+          street: "",
+          town: "",
+          city: "",
+          postcode: "",
+          image: null,
+        });
+      }
     } catch (error) {
       console.error("Submission error:", error);
+      setStatusMessage("❌ Something went wrong. Please try again.");
     }
   };
 
   return (
     <form onSubmit={handleSubmit} className={styles.formContainer}>
-      <label className={styles.formLabel}>
-        Library Name / Description:
+      <label className={`${googleFont.className} ${styles.formLabel}`}>
+        Give your Little Library a name
         <input
           name="name"
           type="text"
@@ -62,10 +91,11 @@ const AddNewLibraryForm = () => {
           onChange={handleChange}
           required
           className={styles.formInput}
+          placeholder="The Little Blue Sparrow Library, for example"
         />
       </label>
 
-      <label className={styles.formLabel}>
+      <label className={`${googleFont.className} ${styles.formLabel}`}>
         Street
         <input
           name="street"
@@ -77,7 +107,7 @@ const AddNewLibraryForm = () => {
         />
       </label>
 
-      <label className={styles.formLabel}>
+      <label className={`${googleFont.className} ${styles.formLabel}`}>
         Town
         <input
           name="town"
@@ -89,8 +119,8 @@ const AddNewLibraryForm = () => {
         />
       </label>
 
-      <label className={styles.formLabel}>
-        City:
+      <label className={`${googleFont.className} ${styles.formLabel}`}>
+        City
         <input
           name="city"
           type="text"
@@ -101,8 +131,8 @@ const AddNewLibraryForm = () => {
         />
       </label>
 
-      <label className={styles.formLabel}>
-        Postcode:
+      <label className={`${googleFont.className} ${styles.formLabel}`}>
+        Postcode
         <input
           name="postcode"
           type="text"
@@ -113,8 +143,8 @@ const AddNewLibraryForm = () => {
         />
       </label>
 
-      <label className={styles.formLabel}>
-        Upload Image:
+      <label className={`${googleFont.className} ${styles.formLabel}`}>
+        Add an image:{"  "}
         <input
           name="image"
           type="file"
@@ -123,10 +153,12 @@ const AddNewLibraryForm = () => {
           className={styles.fileInput}
         />
       </label>
-
+      <br />
       <button type="submit" className={styles.submitBtn}>
         Submit
       </button>
+
+      {statusMessage && <p className={styles.statusMessage}>{statusMessage}</p>}
     </form>
   );
 };
