@@ -73,6 +73,7 @@ const AllLibrariesOnMap = ({ serialisedAllLibraries }) => {
               className={styles.popUp}
               onClick={() => setSelectedLibrary(null)}
               style={{
+                position: "absolute",
                 left: screenPosition.x,
                 top: screenPosition.y,
               }}

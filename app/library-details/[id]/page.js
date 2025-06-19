@@ -26,7 +26,7 @@ const LibraryDetailsPage = async ({ params }) => {
       <LibraryItemMap library={serialisedLibrary} />
       <div className={styles.titleContainer}>
         <h1 className={`${googleFont.className} ${styles.title}`}>
-          {serialisedLibrary.name} Little Library
+          {serialisedLibrary.name}
         </h1>
       </div>
 
