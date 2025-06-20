@@ -15,7 +15,7 @@ const LibraryCard = ({ id, name, street, town, city, postcode, image }) => {
         <Link href={`/library-details/${id}`}>
           <h2 className={`${googleFont.className} ${styles.title}`}>{name}</h2>
         </Link>
-        <p>
+        <p className={styles.address}>
           {street}, {town}, {city}, {postcode}
         </p>
         <Link href={`/library-details/${id}`} className={styles.button}>

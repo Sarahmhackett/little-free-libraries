@@ -34,8 +34,8 @@ const LibraryDetailsPage = async ({ params }) => {
         <div className={styles.leftContent}>
           <div className={styles.subTitleContainer}>
             <p className={styles.subTitle}>
-              Borrow a book from the Little {serialisedLibrary.name} Library?
-              Let a stranger know if you loved what you read here:
+              Borrow a book from {serialisedLibrary.name}? Leave a comment. Let
+              a stranger know if you loved what you read!
             </p>
           </div>
 

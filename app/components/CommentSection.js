@@ -37,6 +37,9 @@ export default function CommentSection({ libraryId }) {
 
   return (
     <div className={styles.commentsContainer}>
+      <h2 className={`${googleFont.className} ${styles.commentsTitle}`}>
+        Comments
+      </h2>
       {comments.map((comment) => (
         <div key={comment._id} className={styles.comment}>
           <p className={`${googleFont.className} ${styles.name}`}>

@@ -1,52 +1,101 @@
 
-.titleContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 30px;
-    margin-top: 20px;
-    margin-bottom: 0;
+@media (max-width: 932px) {
+    .titleContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 30px;
+        margin-top: 20px;
+    }
+
+    .title {
+        font-size: 24px;
+        color: rgb(26, 208, 159);
+        z-index: 11;
+        margin-bottom: -20px;
+        top: 0;
+    }
+
+    .contentContainer {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .leftContent {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .subTitleContainer {
+        display: none;
+    }
+
+    .subTitle {
+        line-height: 120%;
+        font-size: 14px;
+    }
+
+    .rightContent {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
 }
 
-.title {
-    font-size: 60px;
-    color: rgb(26, 208, 159);
-    z-index: 11;
-    bottom: 0;
-    top: 0;
-}
-
-.contentContainer {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); 
-    justify-items: center;
-    gap: 1rem; 
-    padding: 16px;
-}
-
-.leftContent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 80%;
-  }
-
-.subTitleContainer {
-    display: flex;
-    align-items: center;
-    height: 90px;
-    padding: 16px;
-    border-radius: 12px;
-}
-
-.subTitle {
-    line-height: 140%;
-    font-size: 20px;
-}
-
-.rightContent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 80%;
-  }
+@media (min-width: 932px) {
+    .titleContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 30px;
+        margin-top: 20px;
+        margin-bottom: 0;
+    }
+    
+    .title {
+        font-size: 60px;
+        color: rgb(26, 208, 159);
+        z-index: 11;
+        bottom: 0;
+        top: 0;
+    }
+    
+    .contentContainer {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); 
+        justify-items: center;
+        gap: 1rem; 
+        padding: 16px;
+    }
+    
+    .leftContent {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 80%;
+      }
+    
+    .subTitleContainer {
+        display: flex;
+        align-items: center;
+        height: 90px;
+        padding: 16px;
+        border-radius: 12px;
+    }
+    
+    .subTitle {
+        line-height: 140%;
+        font-size: 20px;
+    }
+    
+    .rightContent {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 80%;
+      }
+    }

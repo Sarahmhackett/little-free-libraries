@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
+import { GiBookCover } from "react-icons/gi";
 import styles from "./NavBar.module.css";
 import { Borel } from "next/font/google";
 
@@ -20,6 +20,9 @@ const NavBar = () => {
         <Link href="/">
           <li className={`${googleFont.className} ${styles.title}`}>
             Little Leeds Libraries
+          </li>
+          <li className={styles.mobileIcon}>
+            <GiBookCover size={50} />
           </li>
         </Link>
 
