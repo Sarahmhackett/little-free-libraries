@@ -16,21 +16,18 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## About this project
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project enables a user to fill out a form to add a local 'Little Free Library'. The library is then displayed on a map along with all other Little Free Libraries in the area.
 
-## Learn More
+Users can select a library to see more details, and from here they can add comments. The hope is people would use this to send a thank you for a book they've found.
 
-To learn more about Next.js, take a look at the following resources:
+## Behind the scenes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The form takes a name, address and image. Upon submit, the address is passed to a Google API to acquire the Long and Lat coords. The image is also sent to Cloudinary to be hosted.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+These details are all then saved into a MongoDB database of libraries.
 
-## Deploy on Vercel
+The coordinates and library Id is used to plot individual libraries onto a Mapbox map.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+On a library details page, comments can be added against each individual library.
